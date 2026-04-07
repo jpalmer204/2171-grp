@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login System</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        .dashboard {
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .logout-btn {
+            background: red;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN VIEW -->
+<div id="loginView" class="login-container">
+    <h2>Test Login System</h2>
+    <input type="text" id="username" placeholder="Enter Username">
+    <input type="password" id="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+    <div class="message" id="message"></div>
+</div>
+
+<!-- DASHBOARD VIEW -->
+<div id="dashboardView" class="dashboard hidden">
+    
+    <div class="header">
+        <h2>Dashboard</h2>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <h3 id="welcomeText">Welcome 👋</h3>
+
+    <div class="cards">
+        <div class="card">
+            <h3>📦 Inventory</h3>
+            <p>Manage stock</p>
+        </div>
+
+        <div class="card">
+            <h3>🛒 Orders</h3>
+            <p>View purchases</p>
+        </div>
+
+        <div class="card">
+            <h3>📊 Reports</h3>
+            <p>View analytics</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- JS Files -->
+<script src="User.js"></script>
+<script src="AuthService.js"></script>
+
+<script>
+    const authService = new AuthService();
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const user = new User(username, password);
+
+        if (authService.login(user)) {
+            document.getElementById("loginView").classList.add("hidden");
+            document.getElementById("dashboardView").classList.remove("hidden");
+
+            document.getElementById("welcomeText").innerText =
+                "Welcome, " + username + " 👋";
+
+        } else {
+            const message = document.getElementById("message");
+            message.style.color = "red";
+            message.innerText = "Invalid credentials!";
+        }
+    }
+
+    function logout() {
+        document.getElementById("dashboardView").classList.add("hidden");
+        document.getElementById("loginView").classList.remove("hidden");
+    }
+</script>
+
+</body>
+</html>
