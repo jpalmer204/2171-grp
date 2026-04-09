@@ -25,7 +25,7 @@
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             margin-top: 20px;
         }
@@ -83,7 +83,39 @@
             <h3>📊 Reports</h3>
             <p>View analytics</p>
         </div>
+
+        <div class="card" id="viewCartBtn">
+            <h3>🛒 Cart</h3>
+            <p>View cart items</p>
+        </div>
     </div>
+
+        <section id="cartSection" class="hidden">
+        <h2>Cart</h2>
+        <div id="cartContainer"></div>
+        <p id="cartTotal">Total: $0</p>
+        <button id="checkoutBtn">Checkout</button>
+    </section>
+
+    <section id="checkoutSection" class="hidden">
+        <h2>Checkout</h2>
+
+        <form id="checkoutForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="address" placeholder="Address" required>
+
+            <select id="paymentMethod" required>
+                <option value="">Select Payment Method</option>
+                <option value="Cash">Cash</option>
+                <option value="Card">Card</option>
+            </select>
+
+            <button type="submit">Place Order</button>
+        </form>
+
+        <div id="confirmationMessage"></div>
+    </section>
 
 </div>
 
