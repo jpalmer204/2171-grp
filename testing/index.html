@@ -150,6 +150,20 @@
         document.getElementById("dashboardView").classList.add("hidden");
         document.getElementById("loginView").classList.remove("hidden");
     }
+    document.getElementById("viewCartBtn").addEventListener("click", function () {
+        document.getElementById("cartSection").classList.toggle("hidden");
+    });
+
+    document.getElementById("checkoutBtn").addEventListener("click", function () {
+        document.getElementById("checkoutSection").classList.remove("hidden");
+    });
+
+    document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        document.getElementById("confirmationMessage").innerText =
+            "Order placed successfully!";
+    });
 </script>
 
 </body>
