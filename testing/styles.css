@@ -2,10 +2,8 @@ body {
     font-family: Arial, sans-serif;
     background: #0f172a;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin: 0;
+    padding: 20px;
 }
 
 .login-container {
@@ -14,6 +12,8 @@ body {
     border-radius: 10px;
     width: 300px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+    margin: 100px auto;
 }
 
 h2 {
@@ -29,7 +29,6 @@ input {
 }
 
 button {
-    width: 100%;
     padding: 10px;
     background: #38bdf8;
     border: none;
@@ -40,6 +39,26 @@ button {
 button:hover {
     background: #0ea5e9;
 }
+
+        #cartSection,
+        #checkoutSection {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #confirmationMessage {
+            margin-top: 10px;
+            color: lightgreen;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
 
 .message {
     text-align: center;

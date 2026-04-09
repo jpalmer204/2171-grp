@@ -25,7 +25,7 @@
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
             margin-top: 20px;
         }
@@ -83,7 +83,39 @@
             <h3>📊 Reports</h3>
             <p>View analytics</p>
         </div>
+
+        <div class="card" id="viewCartBtn">
+            <h3>🛒 Cart</h3>
+            <p>View cart items</p>
+        </div>
     </div>
+
+        <section id="cartSection" class="hidden">
+        <h2>Cart</h2>
+        <div id="cartContainer"></div>
+        <p id="cartTotal">Total: $0</p>
+        <button id="checkoutBtn">Checkout</button>
+    </section>
+
+    <section id="checkoutSection" class="hidden">
+        <h2>Checkout</h2>
+
+        <form id="checkoutForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="address" placeholder="Address" required>
+
+            <select id="paymentMethod" required>
+                <option value="">Select Payment Method</option>
+                <option value="Cash">Cash</option>
+                <option value="Card">Card</option>
+            </select>
+
+            <button type="submit">Place Order</button>
+        </form>
+
+        <div id="confirmationMessage"></div>
+    </section>
 
 </div>
 
@@ -118,6 +150,52 @@
         document.getElementById("dashboardView").classList.add("hidden");
         document.getElementById("loginView").classList.remove("hidden");
     }
+        const cartItems = [
+        { name: "Dash Cam A", price: 120, qty: 1 },
+        { name: "Dash Cam B", price: 180, qty: 2 }
+    ];
+
+    function renderCart() {
+        const cartContainer = document.getElementById("cartContainer");
+        const cartTotal = document.getElementById("cartTotal");
+
+        cartContainer.innerHTML = "";
+
+        let total = 0;
+
+        cartItems.forEach(function (item) {
+            const div = document.createElement("div");
+            div.classList.add("card");
+
+            div.innerHTML = `
+                <h3>${item.name}</h3>
+                <p>Price: $${item.price}</p>
+                <p>Quantity: ${item.qty}</p>
+            `;
+
+            cartContainer.appendChild(div);
+
+            total += item.price * item.qty;
+        });
+
+        cartTotal.innerText = "Total: $" + total;
+    }
+
+    document.getElementById("viewCartBtn").addEventListener("click", function () {
+        document.getElementById("cartSection").classList.toggle("hidden");
+        renderCart();
+    });
+
+    document.getElementById("checkoutBtn").addEventListener("click", function () {
+        document.getElementById("checkoutSection").classList.remove("hidden");
+    });
+
+    document.getElementById("checkoutForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        document.getElementById("confirmationMessage").innerText =
+            "Order placed successfully!";
+    });
 </script>
 
 </body>
