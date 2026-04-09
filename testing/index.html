@@ -155,7 +155,9 @@
     });
 
     document.getElementById("checkoutBtn").addEventListener("click", function () {
-        document.getElementById("checkoutSection").classList.remove("hidden");
+    const checkoutSection = document.getElementById("checkoutSection");
+    checkoutSection.classList.remove("hidden");
+    checkoutSection.scrollIntoView({ behavior: "smooth" });
     });
 
     document.getElementById("checkoutForm").addEventListener("submit", function (e) {
